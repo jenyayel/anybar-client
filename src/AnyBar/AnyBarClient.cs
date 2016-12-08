@@ -10,6 +10,8 @@ namespace AnyBar
     /// </summary>
     public class AnyBarClient : IDisposable
     {
+        public const int DEFAULT_PORT = 1738;
+
         private Socket _socket;
         private EndPoint _endPoint;
 
@@ -18,7 +20,7 @@ namespace AnyBar
         /// </summary>
         /// <param name="host">DNS name of the host where AnyBar is installed</param>
         /// <param name="port">The port number on which AnyBar listens</param>
-        public AnyBarClient(string host = "localhost", int port = 1738)
+        public AnyBarClient(string host = "localhost", int port = DEFAULT_PORT)
         {
             if (String.IsNullOrEmpty(host)) throw new ArgumentNullException(nameof(host));
             if (port < IPEndPoint.MinPort || port > IPEndPoint.MaxPort) throw new ArgumentOutOfRangeException(nameof(port));
@@ -32,7 +34,7 @@ namespace AnyBar
         /// </summary>
         /// <param name="ipAddress">IP address of the host where AnyBar is installed</param>
         /// <param name="port">The port number on which AnyBar listens</param>
-        public AnyBarClient(long ipAddress = 127, int port = 1738)
+        public AnyBarClient(long ipAddress = 127, int port = DEFAULT_PORT)
         {
             if (port < IPEndPoint.MinPort || port > IPEndPoint.MaxPort) throw new ArgumentOutOfRangeException(nameof(port));
 

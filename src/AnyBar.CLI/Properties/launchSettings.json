@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AnyBar.CLI": {
+      "commandName": "Project",
+      "commandLineArgs": "--c Red"
+    }
+  }
+}
