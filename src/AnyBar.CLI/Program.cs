@@ -10,6 +10,7 @@ namespace AnyBar.CLI
         public static int Main(string[] args)
         {
             var result = Parser.Default.ParseArguments<Options>(args);
+            
             var exitCode = result
                 .MapResult(
                     options => {
