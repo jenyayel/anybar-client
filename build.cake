@@ -1,71 +1,54 @@
-#tool nuget:?package=NUnit.ConsoleRunner&version=3.4.0
-//////////////////////////////////////////////////////////////////////
-// ARGUMENTS
-//////////////////////////////////////////////////////////////////////
-
+﻿// arguments 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
+var outputDir = Directory("./build");
 
-//////////////////////////////////////////////////////////////////////
-// PREPARATION
-//////////////////////////////////////////////////////////////////////
-
-// Define directories.
-var buildDir = Directory("./src/Example/bin") + Directory(configuration);
-
-//////////////////////////////////////////////////////////////////////
-// TASKS
-//////////////////////////////////////////////////////////////////////
-
+// tasks definitions
 Task("Clean")
     .Does(() =>
 {
-    CleanDirectory(buildDir);
+    CleanDirectory(outputDir);
 });
 
-Task("Restore-NuGet-Packages")
+Task("Restore")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    NuGetRestore("./src/Example.sln");
+	DotNetCoreRestore();
 });
 
 Task("Build")
-    .IsDependentOn("Restore-NuGet-Packages")
+    .IsDependentOn("Restore")
     .Does(() =>
 {
-    if(IsRunningOnWindows())
-    {
-      // Use MSBuild
-      MSBuild("./src/Example.sln", settings =>
-        settings.SetConfiguration(configuration));
-    }
-    else
-    {
-      // Use XBuild
-      XBuild("./src/Example.sln", settings =>
-        settings.SetConfiguration(configuration));
-    }
+    DotNetCoreBuild("./src/**/project.json");
 });
 
-Task("Run-Unit-Tests")
+Task("Tests")
     .IsDependentOn("Build")
     .Does(() =>
 {
-    NUnit3("./src/**/bin/" + configuration + "/*.Tests.dll", new NUnit3Settings {
-        NoResults = true
-        });
+	var settings = new DotNetCoreTestSettings
+	{
+		Configuration = configuration
+	};
+	DotNetCoreTest("./tests/AnyBar.Tests", settings);
 });
 
-//////////////////////////////////////////////////////////////////////
-// TASK TARGETS
-//////////////////////////////////////////////////////////////////////
+Task("Pack")
+    .IsDependentOn("Tests")
+    .Does(() =>
+{           
+	var settings = new DotNetCorePackSettings
+	{
+		Configuration = configuration,
+		OutputDirectory = outputDir
+	};
+	DotNetCorePack("./src/AnyBar", settings);
+	DotNetCorePack("./src/AnyBar.CLI", settings);
+});
 
+// run
 Task("Default")
-    .IsDependentOn("Run-Unit-Tests");
-
-//////////////////////////////////////////////////////////////////////
-// EXECUTION
-//////////////////////////////////////////////////////////////////////
-
+    .IsDependentOn("Pack");
 RunTarget(target);
