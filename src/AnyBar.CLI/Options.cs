@@ -4,8 +4,8 @@ namespace AnyBar.CLI
 {
     public class Options
     {
-        [Option('h', "host", Default = "localhost", Required = false,
-            HelpText = "The host name of the machine running the AnyBar instance")]
+        [Option('h', "host", Default = "127.0.0.1", Required = false,
+            HelpText = "The host name or IP address of the machine running the AnyBar instance")]
         public string Host { get; set; }
 
         [Option('p', "port", Default = AnyBarClient.DEFAULT_PORT, Required = false,

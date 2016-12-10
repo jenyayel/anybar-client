@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace AnyBar.CLI
 {
@@ -15,7 +16,14 @@ namespace AnyBar.CLI
                 .MapResult(
                     options => {
                         Console.WriteLine($"[{options.Host}:{options.Port} => {options.Color}]");
-                        new AnyBarClient(options.Host, options.Port).Change(options.Color);
+                        IPAddress ipAddress;
+                        AnyBarClient client;
+                        if(IPAddress.TryParse(options.Host, out ipAddress))
+                            client = new AnyBarClient(ipAddress, options.Port);
+                        else
+                            client = new AnyBarClient(options.Host, options.Port);
+                        
+                        client.Change(options.Color);
                         return 0;
                     },
                     errors =>

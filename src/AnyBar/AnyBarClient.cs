@@ -34,11 +34,12 @@ namespace AnyBar
         /// </summary>
         /// <param name="ipAddress">IP address of the host where AnyBar is installed</param>
         /// <param name="port">The port number on which AnyBar listens</param>
-        public AnyBarClient(long ipAddress = 127, int port = DEFAULT_PORT)
+        public AnyBarClient(IPAddress ipAddress, int port = DEFAULT_PORT)
         {
+            if (ipAddress == null) throw new ArgumentNullException(nameof(ipAddress));
             if (port < IPEndPoint.MinPort || port > IPEndPoint.MaxPort) throw new ArgumentOutOfRangeException(nameof(port));
 
-            _endPoint = new IPEndPoint(new IPAddress(ipAddress), port);
+            _endPoint = new IPEndPoint(ipAddress, port);
             _socket = new Socket(SocketType.Dgram, ProtocolType.Udp);
         }
 #if NET452
@@ -71,7 +72,7 @@ namespace AnyBar
         {
             await _socket.SendToAsync(
                 new ArraySegment<byte>(image.ToByteArray()),
-                SocketFlags.Broadcast,
+                SocketFlags.None,
                 _endPoint).ConfigureAwait(false);
         }
 #endif
@@ -84,7 +85,7 @@ namespace AnyBar
         {
             _socket.SendTo(
                 image.ToByteArray(), 
-                SocketFlags.Broadcast, 
+                SocketFlags.None, 
                 _endPoint);
         }
 
