@@ -8,7 +8,7 @@
             "preLaunchTask": "build",
             "program": "${workspaceRoot}/src/AnyBar.CLI/bin/Debug/netcoreapp1.0/AnyBar.CLI.dll",
             "args": [
-                "-c Red"
+                "-c black"
             ],
             "cwd": "${workspaceRoot}/src/AnyBar.CLI",
             "externalConsole": false,

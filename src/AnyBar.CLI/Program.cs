@@ -10,9 +10,12 @@ namespace AnyBar.CLI
     {
         public static int Main(string[] args)
         {
-            var result = Parser.Default.ParseArguments<Options>(args);
-            
-            var exitCode = result
+            var parser = new Parser(s => {
+                s.CaseInsensitiveEnumValues = true;
+            });
+
+            var exitCode = parser
+                .ParseArguments<Options>(args)
                 .MapResult(
                     options => {
                         Console.WriteLine($"[{options.Host}:{options.Port} => {options.Color}]");
@@ -31,7 +34,7 @@ namespace AnyBar.CLI
                         var colorError = (errors as IEnumerable<Error>)
                             .FirstOrDefault(e => e is BadFormatConversionError)
                             as BadFormatConversionError;
-                        if (colorError.NameInfo.LongName == "color")
+                        if (colorError?.NameInfo.LongName == "color")
                             Console.WriteLine("Color can be one of: {0}", String.Join(", ", Enum.GetNames(typeof(AnyBarImage))));
                         return 1;
                     });
