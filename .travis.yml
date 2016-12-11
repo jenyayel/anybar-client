@@ -5,7 +5,8 @@ os:
 sudo: required
 dist: trusty
 dotnet: 1.0.0-preview2-003121
-mono: none
+mono:  
+  - 4.2.3
 env:
   global:
     - CLI_VERSION=latest
