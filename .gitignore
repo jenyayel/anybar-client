@@ -56,6 +56,8 @@ project.lock.json
 *.GhostDoc.xml
 
 # Build related
+tools/Addins/
 tools/Cake/
+tools/xunit*/
 tools/nuget.exe
 tools/packages.config.md5sum
