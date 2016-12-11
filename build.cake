@@ -44,7 +44,7 @@ Task("Build")
 				Information("Framework version {0}", framework);
 				var settings = new DotNetCoreBuildSettings
 				{
-					Runtime = framework
+					Framework = framework
 				};
 				DotNetCoreBuild(projectFiles, settings);
 			}			
