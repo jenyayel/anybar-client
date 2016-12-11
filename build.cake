@@ -44,7 +44,7 @@ Task("Pack")
 		Configuration = configuration,
 		OutputDirectory = outputDir
 	};
-	DotNetCorePack("./src/AnyBar", settings);
+	DotNetCorePack("./src/AnyBar.Client", settings);
 	DotNetCorePack("./src/AnyBar.CLI", settings);
 });
 

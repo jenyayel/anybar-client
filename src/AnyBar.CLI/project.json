@@ -4,7 +4,7 @@
     "emitEntryPoint": true
   },
   "dependencies": {
-    "AnyBar": "1.0.0-*",
+    "AnyBar.Client": "1.0.0-*",
     "CommandLineParser": "2.1.1-beta"
   },
   "frameworks": {

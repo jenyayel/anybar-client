@@ -2,7 +2,7 @@
   "dependencies": {
     "dotnet-test-xunit": "2.2.0-*",
     "xunit": "2.2.0-*",
-    "AnyBar": "1.0.0-*"
+    "AnyBar.Client": "1.0.0-*"
   },
   "testRunner": "xunit",
   "frameworks": {

@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AnyBar", "src\AnyBar\AnyBar.xproj", "{C7CC805F-C350-49B0-AF5F-3620EE56BB69}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AnyBar.Client", "src\AnyBar.Client\AnyBar.Client.xproj", "{C7CC805F-C350-49B0-AF5F-3620EE56BB69}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AnyBar.CLI", "src\AnyBar.CLI\AnyBar.CLI.xproj", "{30AB0702-B62D-4555-BD19-9463CBF85B0F}"
 EndProject
