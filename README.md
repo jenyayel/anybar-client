@@ -3,9 +3,16 @@
 
 [![Latest version](https://img.shields.io/nuget/v/AnyBar.Client.svg)](https://www.nuget.org/packages/AnyBar.Client) 
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jenyayel/anybar-client/master/LICENSE.md) 
-[![Build status](https://travis-ci.org/jenyayel/anybar-client.svg?branch=master)](https://travis-ci.org/jenyayel/anybar-client)
 
 Client library for controlling  [AnyBar](https://github.com/tonsky/AnyBar).
+
+## Build Status
+
+| Build server | Platform     | Build status                                                                                                                                                                 | Tests              |
+|--------------|--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------|
+| AppVeyor     | Windows      | [![Build status](https://img.shields.io/appveyor/ci/jenyayel/anybar-client/master.svg)](https://ci.appveyor.com/project/jenyayel/anybar-client/branch/master)                |                    |
+| Travis       | Linux / OS X | [![Build status](https://img.shields.io/travis/jenyayel/anybar-client/master.svg)](https://travis-ci.org/jenyayel/anybar-client)                                             |                    |
+
 
 ## Install
 

@@ -1,0 +1,14 @@
+# Build script
+init:
+  - git config --global core.autocrlf true
+
+# Build script
+build_script:
+  - ps: .\build.ps1
+
+# Tests
+test: off
+
+# Build cache
+cache:
+- tools -> build.cake
