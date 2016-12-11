@@ -1,5 +1,4 @@
 # AnyBar .NET Core client
-===================
 
 [![Latest version](https://img.shields.io/nuget/v/AnyBar.Client.svg)](https://www.nuget.org/packages/AnyBar.Client) 
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jenyayel/anybar-client/master/LICENSE.md) 
