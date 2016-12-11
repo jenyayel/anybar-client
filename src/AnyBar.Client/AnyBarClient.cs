@@ -25,7 +25,19 @@ namespace AnyBar
             if (String.IsNullOrEmpty(host)) throw new ArgumentNullException(nameof(host));
             if (port < IPEndPoint.MinPort || port > IPEndPoint.MaxPort) throw new ArgumentOutOfRangeException(nameof(port));
 
-            _endPoint = new DnsEndPoint(host, port);
+            if(host.Equals("localhost", StringComparison.OrdinalIgnoreCase))
+                _endPoint = new IPEndPoint(IPAddress.Loopback, port);
+            else
+            {
+#if NET452
+                var ips = System.Net.Dns.GetHostAddresses(host);
+                if (ips.Length == 0)
+                    throw new ArgumentException("Unable to retrieve address from specified host name.", "hostName");
+                _endPoint = new IPEndPoint(ips[0], port);
+#else
+                throw new NotSupportedException();
+#endif
+            }
             _socket = new Socket(SocketType.Dgram, ProtocolType.Udp);
         }
 
@@ -44,7 +56,7 @@ namespace AnyBar
         }
 #if NET452
         /// <summary>
-        /// Asynchronously changes the icon of  AnyBar
+        /// Asynchronously changes the icon of AnyBar
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
@@ -64,7 +76,7 @@ namespace AnyBar
         }
 #else
         /// <summary>
-        /// Asynchronously changes the icon of  AnyBar
+        /// Asynchronously changes the icon of AnyBar
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>

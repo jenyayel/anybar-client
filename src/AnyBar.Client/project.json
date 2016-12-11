@@ -1,5 +1,9 @@
 ﻿{
-  "version": "1.0.0-*",
+  "name": "AnyBar.Client",
+  "description": "Client library for controlling AnyBar https://github.com/tonsky/AnyBar.",
+  "title": "AnyBar Client",
+  "authors": [ "Jenya Y." ],
+  "version": "1.0.0",
 
   "dependencies": {
     "NETStandard.Library": "1.6.0"
@@ -10,5 +14,15 @@
     },
     "net452": {
     }
+  },
+  "packOptions": {
+    "tags": [ "AnyBar" ],
+    "licenseUrl": "https://raw.githubusercontent.com/jenyayel/anybar-client/master/LICENSE.md",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/jenyayel/anybar-client"
+    },
+    "releaseNotes": "Initial version. Implemented changing color.",
+    "projectUrl": "https://github.com/jenyayel/anybar-client"
   }
 }
