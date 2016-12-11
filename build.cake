@@ -24,31 +24,26 @@ Task("Build")
     .IsDependentOn("Restore")
     .Does(() =>
 {
-	if (IsRunningOnWindows())
+	var projects = GetFiles(projectFiles);
+	foreach(var projectFile in projects)
 	{
-		DotNetCoreBuild(projectFiles);
-	}
-	else
-	{
-		// in non-Windows we should not build "full framework"
-		var projects = GetFiles(projectFiles);
-		foreach(var projectFile in projects)
+		var frameworks = ParseJsonFromFile(projectFile)
+			.GetValue("frameworks")
+			.Children<JProperty>()
+			.Select(j => j.Name);
+
+		foreach(var framework in frameworks)
 		{
-			var framework = ParseJsonFromFile(projectFile)
-				.GetValue("frameworks")
-				.Children<JProperty>().Where(j => j.Name != "net452")
-				.Select(j => j.Name)
-				.FirstOrDefault();
-			if(framework != null)
+			if (!IsRunningOnWindows() && framework == "net452")
+				continue;
+			
+			Information("Framework version {0}", framework);
+			var settings = new DotNetCoreBuildSettings
 			{
-				Information("Framework version {0}", framework);
-				var settings = new DotNetCoreBuildSettings
-				{
-					Framework = framework
-				};
-				DotNetCoreBuild(projectFiles, settings);
-			}			
-		}
+				Framework = framework
+			};
+			DotNetCoreBuild(projectFile.FullPath, settings);
+		}			
 	}
 });
 
