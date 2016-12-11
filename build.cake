@@ -65,7 +65,8 @@ Task("Pack")
 	var settings = new DotNetCorePackSettings
 	{
 		Configuration = configuration,
-		OutputDirectory = outputDir
+		OutputDirectory = outputDir,
+		NoBuild = true
 	};
 	DotNetCorePack("./src/AnyBar.Client", settings);
 });
