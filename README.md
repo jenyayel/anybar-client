@@ -16,7 +16,7 @@ Client library for controlling  [AnyBar](https://github.com/tonsky/AnyBar).
 ## Install
 
 AnyBar client is available as a NuGet package. 
-You can install it by listing it in your `peoject.json` or `.cproj` files or by using the [NuGet CLI](https://docs.nuget.org/ndocs/guides/install-nuget):
+You can install it by listing it in your `project.json` or `.csproj` files or by using the [NuGet CLI](https://docs.nuget.org/ndocs/guides/install-nuget):
 ```
 Install-Package AnyBar.Client
 ```
